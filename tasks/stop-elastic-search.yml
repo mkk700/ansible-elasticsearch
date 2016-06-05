@@ -1,0 +1,4 @@
+---
+
+  - name: Start elasticsearch service
+    shell: kill `cat {{elasticsearch_pid_dir}}/{{dev_pid}}`

@@ -1,0 +1,4 @@
+---
+
+  - name: Start elasticsearch service
+    shell: "{{ elasticsearch_deploy_dir }}/{{elasticsearch_version}}/bin/./elasticsearch -d -p  {{elasticsearch_pid_dir}}/{{dev_pid}}"
