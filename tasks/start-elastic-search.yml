@@ -1,4 +1,12 @@
 ---
 
-  - name: Start elasticsearch service
+#check to see if elasticsearch is already running
+  - name: Start elasticsearch | Check if elasticsearch is already running
+    stat:
+      path={{elasticsearch_pid_dir}}/{{dev_pid}}
+    register: elasticsearch_running
+
+#start elastic search when it's not already running
+  - name: Start elasticsearch | Staring elasticsearch
     shell: "{{ elasticsearch_deploy_dir }}/{{elasticsearch_version}}/bin/./elasticsearch -d -p  {{elasticsearch_pid_dir}}/{{dev_pid}}"
+    when: elasticsearch_running.stat.exists == False

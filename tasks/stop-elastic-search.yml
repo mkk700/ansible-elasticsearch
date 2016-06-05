@@ -1,4 +1,12 @@
 ---
 
-  - name: Start elasticsearch service
+#check to see if elasticsearch is running
+  - name: Stop elasticsearch | Check if elasticsearch is already stopped
+    stat:
+      path={{elasticsearch_pid_dir}}/{{dev_pid}}
+    register: elasticsearch_running
+
+#kill elasticsearch process by it's id
+  - name: Stop elasticsearch | killing process by id
     shell: kill `cat {{elasticsearch_pid_dir}}/{{dev_pid}}`
+    when: elasticsearch_running.stat.exists == True

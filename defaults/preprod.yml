@@ -1,0 +1,28 @@
+---
+# Elasticsearch Ansible Variables
+
+elasticsearch_apt_repos:
+  - 'ppa:webupd8team/java'
+elasticsearch_apt_java_package: oracle-java7-installer
+elasticsearch_apt_dependencies:
+  - htop
+  - ntp
+  - unzip
+elasticsearch_max_open_files: 65535
+
+
+elasticsearch_service_startonboot: no
+elasticsearch_timezone: "Etc/UTC"  # Default to UTC
+
+#elasticsearch_http_cors_enabled: "false"
+elasticsearch_service_state: started
+
+# Non-Elasticsearch Defaults
+apt_cache_valid_time: 300 # seconds between "apt-get update" calls.
+elasticsearch_install_java: true
+
+start_elastic_search: true
+#stop_elastic_search: false
+
+#elastic pid used to
+dev_pid: devPid

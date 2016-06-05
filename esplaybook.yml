@@ -2,13 +2,12 @@
 # Elasticsearch Ansible Playbook
 - hosts: localhost
   user: $user
-  connection: local
 
 #  sudo: yes
 
   vars_files:
-    - defaults/dev.yml
-    - vars/my-vars.yml
+    - defaults/preprod.yml
+    - vars/preprod-vars.yml
 
   tasks:
     - include: tasks/main.yml

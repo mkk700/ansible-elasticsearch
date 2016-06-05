@@ -1,5 +1,10 @@
 ---
 
+# user requested to redeploy elasticsearch
+- name: elastic-install | Remvoe older deployment of ElasticSearch directories
+  file: state=absent path={{elasticsearch_deploy_dir}}
+  when: elasticsearch_re_deploy_dir
+
 #ensure that we have the directorys that we need
 - name: elastic-install | Ensure ElasticSearch directories exists
   file:
@@ -22,17 +27,21 @@
     path={{elasticsearch_deploy_dir}}/{{elasticsearch_version}}/bin
   register: installed_version
 
-- name: elastic-install | ensure deploy directoy are 0775
-  command: find {{ elasticsearch_deploy_dir }} -type d -exec chmod 0755 {} \;
-
 # if elasticsearch is not already deployed
 # copy esticserach from elasticsearch_base_dir to elasticsearch_deploy_dir
-- name: elastic-install | deploy ElasticSearch directories form EFS/base
+- name: elastic-install | Deploy ElasticSearch directories form EFS/base
   copy:
     src={{ elasticsearch_base_dir }}
     dest={{ elasticsearch_deploy_dir }}
   when: not installed_version.stat.exists
 
+#ensure the deployed directory has correct permissions
+- name: elastic-install | ensure Deploy directoy are 0775
+  command: find {{ elasticsearch_deploy_dir }}/{{ elasticsearch_version }} -type d -exec chmod -R 777 {} \;
+  command: find {{ elasticsearch_deploy_dir }}/{{ elasticsearch_version }} -type f -exec chmod -R 777 {} \;
+
+
+#configure elasticsearch.yml file that's deployed
 - name: elastic-install | Configuring Elasticsearch elasticsearch.yml Node
   template:
     src=../templates/elasticsearch.yml.j2

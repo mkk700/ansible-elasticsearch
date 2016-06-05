@@ -21,5 +21,3 @@ elasticsearch_thread_pools:
   - "threadpool.bulk.size: 50"
   - "threadpool.bulk.queue_size: 1000"
 elasticsearch_service_startonboot: yes
-elasticsearch_cluster_name: elasticsearch-ansible
-elasticsearch_node_name: elasticsearch-ansible-node

@@ -244,4 +244,4 @@ MIT
 
 # Author Information
 
-George Stathis - gstathis [at] traackr.com
+Munish Kumar
