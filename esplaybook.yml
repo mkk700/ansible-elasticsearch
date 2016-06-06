@@ -1,6 +1,6 @@
 ---
 # Elasticsearch Ansible Playbook
-- hosts: localhost
+- hosts: all_nodes
   user: $user
 
 #  sudo: yes
@@ -11,8 +11,6 @@
 
   tasks:
     - include: tasks/main.yml
-    # Uncomment to install and enable SPM. Make sure to set the spm_client_token variable in your inventory.ini to your SPM key
-    # - include: tasks/spm.yml
 
 #  handlers:
 #    - include: handlers/main.yml
