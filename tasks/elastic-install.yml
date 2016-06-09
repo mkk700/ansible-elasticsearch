@@ -2,8 +2,8 @@
 
 # user requested to redeploy elasticsearch
 - name: elastic-install | Remvoe older deployment of ElasticSearch directories
-  file: state=absent path={{elasticsearch_deploy_dir}}
-  when: elasticsearch_re_deploy_dir
+  file: state=absent path={{elasticsearch_config_base}}
+  when: elasticsearch_reconfig
 
 #ensure that we have the directorys that we need
 - name: elastic-install | Ensure ElasticSearch directories exists
@@ -13,8 +13,7 @@
     recurse=yes
   with_items:
      - "{{ elasticsearch_work_dir }}"
-     - "{{ elasticsearch_base_dir }}"
-     - "{{ elasticsearch_deploy_dir }}"
+     - "{{ elasticsearch_config_base }}"
      - "{{ elasticsearch_log_dir }}"
      - "{{ elasticsearch_data_dir }}"
      - "{{ elasticsearch_work_dir }}"
@@ -22,23 +21,23 @@
      - "{{ elasticsearch_pid_dir }}"
 
 #check to see if elasticsearch is already deployed
-- name: elastic-install | Check if we have elasticsearch already deployed
-  stat:
-    path={{elasticsearch_deploy_dir}}/{{elasticsearch_version}}/bin
-  register: installed_version
+#- name: elastic-install | Check if we have elasticsearch already deployed
+#  stat:
+#    path={{elasticsearch_deploy_dir}}/{{elasticsearch_version}}/bin
+#  register: installed_version
 
 # if elasticsearch is not already deployed
 # copy esticserach from elasticsearch_base_dir to elasticsearch_deploy_dir
-- name: elastic-install | Deploy ElasticSearch directories form EFS/base
-  copy:
-    src={{ elasticsearch_base_dir }}
-    dest={{ elasticsearch_deploy_dir }}
-  when: not installed_version.stat.exists
+#- name: elastic-install | Deploy ElasticSearch directories form EFS/base
+#  copy:
+#    src={{ elasticsearch_base_dir }}
+#    dest={{ elasticsearch_deploy_dir }}
+#  when: not installed_version.stat.exists
 
 #ensure the deployed directory has correct permissions
-- name: elastic-install | ensure Deploy directoy are 0775
-  command: find {{ elasticsearch_deploy_dir }}/{{ elasticsearch_version }} -type d -exec chmod -R 777 {} \;
-  command: find {{ elasticsearch_deploy_dir }}/{{ elasticsearch_version }} -type f -exec chmod -R 777 {} \;
+#- name: elastic-install | ensure Deploy directoy are 0775
+#  command: find {{ elasticsearch_deploy_dir }}/{{ elasticsearch_version }} -type d -exec chmod -R 777 {} \;
+#  command: find {{ elasticsearch_deploy_dir }}/{{ elasticsearch_version }} -type f -exec chmod -R 777 {} \;
 
 
 #configure elasticsearch.yml file that's deployed
