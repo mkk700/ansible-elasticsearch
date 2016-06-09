@@ -10,7 +10,9 @@
     - vars/preprod-vars.yml
 
   tasks:
-    - include: tasks/main.yml
+    - include: tasks/configure-elasticsearch.yml
+    - include: tasks/start-elasticsearch.yml
+
 
 #  handlers:
 #    - include: handlers/main.yml

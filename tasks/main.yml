@@ -9,7 +9,7 @@
 #- include: timezone.yml
 
 # Install and configure elasticsearch
-- include: elastic-install.yml
+- include: configure-elasticsearch.yml
 
 # Install AWS Plugin
 #- include: aws.yml
@@ -31,10 +31,8 @@
 #- include: post-run.yml
 
 # Start elasticserach
-- include: start-elastic-search.yml
+- include: start-elasticsearch.yml
   when: (start_elastic_search is defined)
 #
-## Stop elasticserach
-- include: stop-elastic-search.yml
-  when: (stop_elastic_search is defined)
+
 

@@ -1,0 +1,16 @@
+---
+# Elasticsearch Ansible Playbook
+- hosts: all_nodes
+  user: $user
+
+#  sudo: yes
+
+  vars_files:
+    - defaults/preprod.yml
+    - vars/preprod-vars.yml
+
+  tasks:
+    - include: tasks/stop-elasticsearch.yml
+
+#  handlers:
+#    - include: handlers/main.yml
