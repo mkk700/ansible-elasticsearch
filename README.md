@@ -13,7 +13,7 @@
 Install [ansible-elasticsearch](https://galaxy.ansible.com/list#/roles/181) via ansible galaxy:
 
 ```
-ansible-galaxy install gpstathis.elasticsearch
+ansible-playbook -i <inventory.ini> my-playbook.yml
 ```
 
 ## Testing locally with Vagrant
