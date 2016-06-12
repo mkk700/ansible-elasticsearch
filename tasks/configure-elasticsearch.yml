@@ -42,7 +42,13 @@
 
 
 #configure elasticsearch.yml file that's deployed
-- name: elastic-install | Configuring Elasticsearch elasticsearch.yml Node
+- name: elastic-install | Configuring Elasticsearch elasticsearch.yml
   template:
     src=../templates/elasticsearch.yml.j2
     dest="{{elasticsearch_config_dir}}/elasticsearch.yml"
+
+#configure logging.yml file that's deployed
+- name: elastic-install | Configuring Elasticsearch logging.yml
+  template:
+    src=../templates/logging.yml.j2
+    dest="{{elasticsearch_config_dir}}/logging.yml"

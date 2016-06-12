@@ -13,3 +13,12 @@
     register: command_result
     failed_when: "'Exception' in command_result.stderr"
     ignore_errors: false
+
+# Wait for Elasticsearch node to come back into cluster
+  - name: wait for the elastic node to start
+    shell: curl -XGET http://localhost:9200/_nodes/{{elasticsearch_node_name}}/info
+    register: result
+    until: result.stdout.find("my-es-node-1") != -1
+    retries: 200
+    delay: 3
+    ignore_errors: false
