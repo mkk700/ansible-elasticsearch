@@ -11,7 +11,7 @@
 
   tasks:
     - include: tasks/configure-elasticsearch.yml
-    - include: tasks/start-elasticsearch.yml
+    - include: tasks/configure-kibana.yml
 
 
 #  handlers:

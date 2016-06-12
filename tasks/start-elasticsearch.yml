@@ -10,3 +10,6 @@
   - name: Start elasticsearch | Staring elasticsearch
     shell: "{{elasticsearch_executable_dir}}/./elasticsearch -d -p  {{elasticsearch_pid_dir}}/{{elasticsearch_node_name}} --path.conf={{elasticsearch_config_dir}}"
     when: elasticsearch_running.stat.exists == False
+    register: command_result
+    failed_when: "'Exception' in command_result.stderr"
+    ignore_errors: false

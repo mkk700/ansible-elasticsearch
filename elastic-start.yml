@@ -10,7 +10,8 @@
     - vars/preprod-vars.yml
 
   tasks:
-    - include: tasks/stop-elasticsearch.yml
+    - include: tasks/start-elasticsearch.yml
+    - include: tasks/start-kibana.yml
 
 #  handlers:
 #    - include: handlers/main.yml

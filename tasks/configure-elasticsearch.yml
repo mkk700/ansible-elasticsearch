@@ -19,6 +19,7 @@
      - "{{ elasticsearch_work_dir }}"
      - "{{ elasticsearch_config_dir }}"
      - "{{ elasticsearch_pid_dir }}"
+     - "{{ elasticsearch_plugins_dir }}"
 
 #check to see if elasticsearch is already deployed
 #- name: elastic-install | Check if we have elasticsearch already deployed
