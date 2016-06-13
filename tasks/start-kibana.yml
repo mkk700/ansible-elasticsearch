@@ -8,6 +8,6 @@
 
 #start elastic search when it's not already running
   - name: Start kibana | Staring kibana
-    shell: "{{kibana_dir}}/bin/./kibana -d -p  {{ elasticsearch_pid_dir }}/kibana_pid_{{elasticsearch_node_name}} --config {{elasticsearch_config_dir}}"
+    shell: "nohup {{kibana_dir}}/bin/./kibana --config {{elasticsearch_config_dir}}/kibana/kibana.yml"
     when: kibana_running.stat.exists == False
     ignore_errors: false

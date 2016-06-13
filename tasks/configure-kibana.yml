@@ -8,7 +8,7 @@
     state=directory
     recurse=yes
   with_items:
-     - "{{ elasticsearch_plugins_dir }}/kibana"
+     - "{{elasticsearch_config_dir}}/kibana/"
 
 # if elasticsearch is not already deployed
 # copy esticserach from elasticsearch_base_dir to elasticsearch_deploy_dir
@@ -16,4 +16,4 @@
   template:
 #    src=../templates/elasticsearch.yml.j2
     src=../templates/kibana.yml.j2
-    dest="{{elasticsearch_plugins_dir}}/kibana/kibana.yml"
+    dest="{{elasticsearch_config_dir}}/kibana/kibana.yml"

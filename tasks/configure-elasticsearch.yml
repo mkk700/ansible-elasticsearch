@@ -1,7 +1,7 @@
 ---
 
 # user requested to redeploy elasticsearch
-- name: elastic-install | Remvoe older deployment of ElasticSearch directories
+- name: elastic-install | Remove older deployment of ElasticSearch directories
   file: state=absent path={{elasticsearch_config_base}}
   when: elasticsearch_reconfig
 

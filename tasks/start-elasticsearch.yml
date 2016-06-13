@@ -2,8 +2,7 @@
 
 #check to see if elasticsearch is already running
   - name: Start elasticsearch | Check if elasticsearch is already running
-    stat:
-      path={{elasticsearch_pid_dir}}/{{dev_pid}}
+    stat: path={{elasticsearch_pid_dir}}/{{elasticsearch_node_name}}
     register: elasticsearch_running
 
 #start elastic search when it's not already running
